@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- 添加外围线框 -->
+    <stroke
+        android:width="1px"
+        android:color="@color/light_grey" />
+    <!-- 添加距离线框的内部控件距离 -->
+    <padding
+        android:bottom="8dp"
+        android:left="8dp"
+        android:right="8dp"
+        android:top="8dp"
+        />
+
+</shape>
