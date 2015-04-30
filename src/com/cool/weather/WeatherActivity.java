@@ -7,6 +7,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import net.youmi.android.AdManager;
+import net.youmi.android.banner.AdSize;
+import net.youmi.android.banner.AdView;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,6 +42,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -101,11 +106,21 @@ public class WeatherActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
+		AdManager.getInstance(this).init("19ad1a2f1bc8f803",
+				"db146d42268b9876", false);
+		
 		setContentView(R.layout.activity_weather);
 		mContext = this;
 
 		init();// 初始化
 		binderfService();// 进行绑定
+		
+		//实例化广告条
+		AdView adView = new AdView(this, AdSize.FIT_SCREEN);
+		//获取要嵌入广告条的布局
+		LinearLayout adLayout=(LinearLayout)findViewById(R.id.adLayout);
+		//将广告条加入到布局中
+		adLayout.addView(adView);
 	}
 
 	@Override
