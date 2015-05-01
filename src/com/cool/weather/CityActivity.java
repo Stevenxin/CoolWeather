@@ -10,11 +10,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.cool.weather.R;
-import com.cool.weather.adapter.CityListAdapter;
+
+import com.cool.weather.adapter.MyAdapter;
 import com.thinkland.juheapi.common.JsonCallBack;
 import com.thinkland.juheapi.data.weather.WeatherData;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -25,7 +27,8 @@ import android.widget.ListView;
 
 public class CityActivity extends Activity {
 	private ListView lv_city;
-	private List<String> list;
+	private List<String> list ;
+	private Context context = CityActivity.this;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,17 +55,16 @@ public class CityActivity extends Activity {
 
 	private void getCities() {
 		WeatherData data = WeatherData.getInstance();
+		list = new ArrayList<String>();
 		data.getCities(new JsonCallBack() {
-
+			
 			@Override
 			public void jsonLoaded(JSONObject json) {
 				// TODO Auto-generated method stub
 				try {
 					int code = json.getInt("resultcode");
 					int error_code = json.getInt("error_code");
-					if (error_code == 0 && code == 200) {
-
-						list = new ArrayList<String>();
+					if (error_code == 0 && code == 200) {						
 						JSONArray resultArray = json.getJSONArray("result");
 						Set<String> citySet = new HashSet<String>();
 						for (int i = 0; i < resultArray.length(); i++) {
@@ -70,13 +72,16 @@ public class CityActivity extends Activity {
 							citySet.add(city);
 						}
 						list.addAll(citySet);
-						CityListAdapter adatper = new CityListAdapter(CityActivity.this, list);
-						lv_city.setAdapter(adatper);
+						
+
+						
+						MyAdapter adapter= new MyAdapter(context, list);
+						lv_city.setAdapter(adapter);				
 						lv_city.setOnItemClickListener(new OnItemClickListener() {
 
 							@Override
-							public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-								// TODO Auto-generated method stub
+							public void onItemClick(AdapterView<?> arg0,
+									View arg1, int arg2, long arg3) {
 								Intent intent = new Intent();
 								intent.putExtra("city", list.get(arg2));
 								setResult(1, intent);
