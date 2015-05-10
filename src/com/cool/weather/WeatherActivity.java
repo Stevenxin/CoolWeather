@@ -39,6 +39,7 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -108,18 +109,18 @@ public class WeatherActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		AdManager.getInstance(this).init("19ad1a2f1bc8f803",
 				"db146d42268b9876", false);
-		
+
 		setContentView(R.layout.activity_weather);
 		mContext = this;
 
 		init();// 初始化
 		binderfService();// 进行绑定
-		
-		//实例化广告条
+
+		// 实例化广告条
 		AdView adView = new AdView(this, AdSize.FIT_SCREEN);
-		//获取要嵌入广告条的布局
-		LinearLayout adLayout=(LinearLayout)findViewById(R.id.adLayout);
-		//将广告条加入到布局中
+		// 获取要嵌入广告条的布局
+		LinearLayout adLayout = (LinearLayout) findViewById(R.id.adLayout);
+		// 将广告条加入到布局中
 		adLayout.addView(adView);
 	}
 
@@ -252,10 +253,6 @@ public class WeatherActivity extends Activity {
 
 	}
 
-	/*
-	 * 解析PMjson
-	 */
-
 	private void setPMView(PMBean bean) {
 		tv_aqi.setText(bean.getAqi());
 		tv_quality.setText(bean.getQuality());
@@ -334,15 +331,38 @@ public class WeatherActivity extends Activity {
 		iv_fourthday_weather = (ImageView) findViewById(R.id.iv_fourthday_weather);
 		tv_felt_air_temp = (TextView) findViewById(R.id.tv_felt_air_temp);
 	}
-	
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // TODO Auto-generated method stub
 
-        if (requestCode == 1 && resultCode == 1) {
-            String city = data.getStringExtra("city");
-            mservice.getCityWeather(city);
-        }
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
 
-    }
+		if (requestCode == 1 && resultCode == 1) {
+			String city = data.getStringExtra("city");
+			mservice.getCityWeather(city);
+		}
+
+	}
+
+	private long mExitTime;
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK
+				&& event.getAction() == KeyEvent.ACTION_DOWN) {
+
+			if ((System.currentTimeMillis() - mExitTime) > 2000) // System.currentTimeMillis()无论何时调用，肯定大于2000
+			{
+				Toast.makeText(getApplicationContext(), "再按一次退出程序",
+						Toast.LENGTH_SHORT).show();
+				mExitTime = System.currentTimeMillis();
+			} else {
+				finish();
+				System.exit(0);
+			}
+
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+
 }

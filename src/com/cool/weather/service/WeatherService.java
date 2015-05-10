@@ -278,9 +278,9 @@ public class WeatherService extends Service {
 				count++;
 				weatherBean = parseWeather(arg0);
 
-				if (weatherBean != null) {
-					// setWeatherViews(bean);
-				}
+//				if (weatherBean != null) {
+//					// setWeatherViews(bean);
+//				}
 				if (count == 3) {
 					// mPullToRefreshScrollView.onRefreshComplete();
 					if (callBack != null) {
@@ -300,10 +300,10 @@ public class WeatherService extends Service {
 				list = parseForecast3h(arg0);
 				count++;
 
-				if (list != null && list.size() >= 5) {
-					// setHourViews(list);
-
-				}
+//				if (list != null && list.size() >= 5) {
+//					// setHourViews(list);
+//
+//				}
 				if (count == 3) {
 					// mPullToRefreshScrollView.onRefreshComplete();
 					if (callBack != null) {
@@ -323,9 +323,9 @@ public class WeatherService extends Service {
 				// TODO Auto-generated method stub
 				pmBean = parserPM(arg0);
 				count++;
-				if (pmBean != null) {
-					// setPMView(pmBean);
-				}
+//				if (pmBean != null) {
+//					// setPMView(pmBean);
+//				}
 				if (count == 3) {
 					if (callBack != null) {
 						callBack.OnParserComplete(list, pmBean, weatherBean);

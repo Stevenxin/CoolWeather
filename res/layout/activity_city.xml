@@ -11,21 +11,30 @@
         android:layout_width="match_parent"
         android:layout_height="64dp" >
 
+        <SearchView
+            android:id="@+id/srv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:iconifiedByDefault="false"
+            android:inputType="textFilter"
+            android:queryHint="请输入您要查找的城市" />
+
         <ImageView
             android:id="@+id/iv_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/srv1"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="8dp"
             android:src="@drawable/back" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/srv1"
             android:layout_centerInParent="true"
             android:text="@string/title_city"
             android:textColor="@color/text_color"
-            android:textSize="20sp" />
+            android:textSize="15sp" />
 
         <View
             android:layout_width="match_parent"
@@ -40,11 +49,10 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:scrollbars="none" 
         android:cacheColorHint="#00000000"
-        android:listSelector="#00000000"
         android:divider="@color/dark_grey"
         android:dividerHeight="1px"
-        />
+        android:listSelector="#00000000"
+        android:scrollbars="none" />
 
 </LinearLayout>
