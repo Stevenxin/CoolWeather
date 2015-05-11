@@ -513,16 +513,7 @@
                         android:paddingLeft="16dp" />
                 </LinearLayout>
             </LinearLayout>
-
-            <!-- 有米 -->
-            <LinearLayout
-                android:id="@+id/adLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"                
-                android:orientation="horizontal" >
-            </LinearLayout>
-
-            </LinearLayout>
+        </LinearLayout>
     </com.cool.weather.swiperefresh.PullToRefreshScrollView>
 
 </LinearLayout>

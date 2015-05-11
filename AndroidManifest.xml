@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cool.weather"
-    android:versionCode="4"
-    android:versionName="4.01" >
+    android:versionCode="5"
+    android:versionName="5.01" >
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -24,7 +24,7 @@
     <application
         android:name="com.cool.weather.WeatherApplication"
         android:allowBackup="true"
-        android:icon="@drawable/we2"
+        android:icon="@drawable/we3"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.NoTitleBar" >
         <meta-data
@@ -50,24 +50,7 @@
         </activity>
 
         <!-- 有米 -->
-        <activity
-            android:name="net.youmi.android.AdBrowser"
-            android:configChanges="keyboard|keyboardHidden|orientation"
-            android:theme="@android:style/Theme.Light.NoTitleBar" >
-        </activity>
 
-        <service
-            android:name="net.youmi.android.AdService"
-            android:exported="false" >
-        </service>
-
-        <receiver android:name="net.youmi.android.AdReceiver" >
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_ADDED" />
-
-                <data android:scheme="package" />
-            </intent-filter>
-        </receiver>
     </application>
 
 </manifest>

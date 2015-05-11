@@ -107,8 +107,6 @@ public class WeatherActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		AdManager.getInstance(this).init("19ad1a2f1bc8f803",
-				"db146d42268b9876", false);
 
 		setContentView(R.layout.activity_weather);
 		mContext = this;
@@ -116,12 +114,6 @@ public class WeatherActivity extends Activity {
 		init();// 初始化
 		binderfService();// 进行绑定
 
-		// 实例化广告条
-		AdView adView = new AdView(this, AdSize.FIT_SCREEN);
-		// 获取要嵌入广告条的布局
-		LinearLayout adLayout = (LinearLayout) findViewById(R.id.adLayout);
-		// 将广告条加入到布局中
-		adLayout.addView(adView);
 	}
 
 	@Override
